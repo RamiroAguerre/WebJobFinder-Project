@@ -6,6 +6,13 @@
     font-family: Arial, sans-serif;
 }
 
+/* Asegura que la página ocupe toda la altura */
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 /* HEADER */
 header {
     background-color: #0073e6;
@@ -73,6 +80,7 @@ nav ul li a {
 /* RESULTADOS DE BÚSQUEDA */
 .results-section {
     padding: 30px;
+    flex: 1; /* Hace que esta sección crezca y empuje el footer hacia abajo */
 }
 
 .job-results {
@@ -114,5 +122,5 @@ footer {
     color: white;
     text-align: center;
     padding: 15px;
-    margin-top: 20px;
+    margin-top: auto; /* Esto mantiene el footer siempre al final */
 }
