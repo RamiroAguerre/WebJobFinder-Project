@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscador de Empleos</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon"> <!-- Agregué favicon -->
 </head>
 <body>
 
@@ -50,50 +51,6 @@
         <p>&copy; 2025 Job Finder - Todos los derechos reservados</p>
     </footer>
 
-    <script>
-        const API_KEY = 'TU_API_KEY';  // Reemplaza con tu API KEY de Adzuna
-        const APP_ID = 'TU_APP_ID';    // Reemplaza con tu APP ID de Adzuna
-
-        document.getElementById('search-form').addEventListener('submit', function (event) {
-            event.preventDefault();  // Evita que el formulario se envíe de forma tradicional
-
-            // Obtener los valores del formulario
-            const keyword = document.getElementById('keyword').value;
-            const location = document.getElementById('location').value;
-            const category = document.getElementById('category').value;
-
-            // Construir la URL para la API de Adzuna
-            const url = `https://api.adzuna.com/v1/api/jobs/ar/search/1?app_id=${APP_ID}&app_key=${API_KEY}&keywords=${keyword}&location=${location}&category=${category}`;
-
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    const jobResults = document.getElementById('job-results');
-                    jobResults.innerHTML = '';  // Limpiar resultados anteriores
-
-                    // Verificar si hay trabajos en los resultados
-                    if (data.results && data.results.length > 0) {
-                        data.results.forEach(job => {
-                            const jobCard = document.createElement('article');
-                            jobCard.classList.add('job-card');
-                            jobCard.innerHTML = `
-                                <h3>${job.title}</h3>
-                                <p>${job.company.display_name} - ${job.location.area}</p>
-                                <p>Salario: ${job.salary ? job.salary : 'No especificado'}</p>
-                                <a href="${job.redirect_url}" target="_blank">Ver más</a>
-                            `;
-                            jobResults.appendChild(jobCard);
-                        });
-                    } else {
-                        jobResults.innerHTML = '<p>No se encontraron trabajos para esta búsqueda.</p>';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error al obtener los datos:', error);
-                    alert('Hubo un error al buscar trabajos. Intenta nuevamente.');
-                });
-        });
-    </script>
-
+    <script src="js/script.js"></script> <!-- Se vincula el archivo externo -->
 </body>
 </html>
